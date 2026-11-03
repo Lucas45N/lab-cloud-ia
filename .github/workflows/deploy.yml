@@ -1,0 +1,25 @@
+name: Pipeline CI/CD - Deploy Automatico OCI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    name: Entrega Continua na OCI
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Executar Deploy Remoto via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VM_HOST }}
+          username: ${{ secrets.VM_USER }}
+          key: ${{ secrets.VM_SSH_KEY }}
+          port: 22
+          script: |
+            cd ~/app
+            echo ">>> Puxando alteracoes do GitHub... <<<"
+            git pull origin main
+            echo ">>> Executando script de atualizacao com Docker Compose... <<<"
+            ./deploy.sh
