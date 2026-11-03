@@ -11,7 +11,7 @@ def health_check():
     return {
         "status": "Online",
         "ambiente": "OCI Vinhedo",
-        "versao": "v2.0 - Deploy Automatizado",
+        "versao": "v2.1 - GitHub Tracked",
         "capitulo": 2
     }
 
