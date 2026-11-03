@@ -1,0 +1,13 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: api-ia:latest
+    container_name: api-ia
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - AMBIENTE=Producao-OCI
+      - REGIAO=sa-vinhedo-1
